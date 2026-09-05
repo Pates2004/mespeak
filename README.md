@@ -1,7 +1,7 @@
 # mespeak
 
 `mespeak` is a 64-bit Android Text-to-Speech engine based on eSpeak
-1.44.05-r28. It uses the Android service, settings and JNI integration model
+1.44.05-r29. It uses the Android service, settings and JNI integration model
 from eSpeak NG, while the native synthesizer and voice data come from the
 reborn eSpeak 1.44.05 codebase, including its current Polish dictionary.
 
@@ -26,6 +26,9 @@ modern Android devices to the permanent Pates2004 release certificate. Its
 SHA-256 fingerprint is
 `2928C21E152E9FD245A5F423F0A11BD8FD658C09282684481C82EDF599E9E055`.
 Verbose Java and JNI diagnostic logging is disabled in release builds.
+
+Release r29 synchronizes the Polish dictionary with the Windows editions and
+keeps hard `z` in the complete *bezinteres-* word family.
 
 This repository builds the architectures used by modern Android devices and
 the 64-bit Pixel emulator:
