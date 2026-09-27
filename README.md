@@ -1,7 +1,7 @@
 # mespeak
 
 `mespeak` is a 64-bit Android Text-to-Speech engine based on eSpeak
-1.44.05-r32. It uses the Android service, settings and JNI integration model
+1.44.05-r33. It uses the Android service, settings and JNI integration model
 from eSpeak NG, while the native synthesizer and voice data come from the
 reborn eSpeak 1.44.05 codebase, including its current Polish dictionary.
 
@@ -57,6 +57,12 @@ in use until the next data update; that update installs bundled dictionaries
 and discards retained import copies. The r32 data marker exercises this policy
 when updating from r31. Legacy imports are migrated at most once, including
 after Direct Boot if credential storage was initially locked.
+
+Release r33 adds an opt-in setting to ignore speech-rate multipliers requested
+by Android, TalkBack and other TTS clients. It defaults to off. The saved
+mespeak speed and optional Sonic boost continue to work when enabled. The
+voice data is unchanged from r32; both editions use the same signed release
+process and keep their previous signing lineage.
 
 This repository builds the architectures used by modern Android devices and
 the 64-bit Pixel emulator:
