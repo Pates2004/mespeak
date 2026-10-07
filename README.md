@@ -3,9 +3,22 @@
 [Polska dokumentacja](README.pl.md)
 
 `mespeak` is a 64-bit Android Text-to-Speech engine based on eSpeak
-1.44.05-r37. It uses the Android service, settings and JNI integration model
+1.44.05-r38. It uses the Android service, settings and JNI integration model
 from eSpeak NG, while the native synthesizer and voice data come from the
 reborn eSpeak 1.44.05 codebase, including its current Polish dictionary.
+
+Release r38 reuses an unchanged effective voice for ordinary consecutive requests,
+avoiding repeated voice/dictionary loading. Language/variant changes, data imports,
+SSML or embedded controls, failures and cancellation invalidate that reuse.
+The normal generator/echo and breath-filter resets are retained, so reuse does
+not skip those parts of voice selection. A fixed catalog limit that could hide
+bundled voices is removed; allocation and JNI enumeration failures are handled
+without publishing a successful empty metadata cache.
+Request callbacks/text are released after synthesis, rejected output is handled
+before unnecessary work, and an unreadable installed data marker triggers recovery.
+The dictionary and all bundled data remain exactly r37; their separate data
+version stays r37, so this app-only update does not require re-extracting them.
+There is no new background worker and no claim of measured battery savings.
 
 The speech-rate settings offer smooth, standard and Sonic x3 modes. Smooth
 mode spans 80-1350 WPM, uses native synthesis up to 300 WPM, and retains the
@@ -31,7 +44,7 @@ word boundaries. The chosen symbol vocabulary is preserved. The BOY-style
 consonant in numeric 30/40/200, unchanged numeric
 300, conventional 50/60/90 reductions, audible `ć` in `sześćset`/600 and the
 careful `pierwsz-` pronunciation are retained.
-This release changes dictionary data, not application or synthesizer logic.
+Release r37 changed dictionary data, not application or synthesizer logic.
 Themes, language selection and speech-rate modes are unchanged. The existing
 nonbreaking-space label remains unreachable at runtime; this update does not
 claim that every character is universally spoken. Rare ligatures retain
