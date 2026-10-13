@@ -1,11 +1,22 @@
+> Local build and assistant materials were moved to `D:\work\espeak-1.44.05-source\mespeak`. Paths beginning with `installfiles`, `Workspace`, `snapshots`, `trash` or `Forme` below refer to that central directory; source paths remain relative to this checkout. Use `C:\work` only if drive D: does not exist.
+
 # mespeak
 
 [Polska dokumentacja](README.pl.md)
 
 `mespeak` is a 64-bit Android Text-to-Speech engine based on eSpeak
-1.44.05-r38. It uses the Android service, settings and JNI integration model
+1.44.05-r39. It uses the Android service, settings and JNI integration model
 from eSpeak NG, while the native synthesizer and voice data come from the
 reborn eSpeak 1.44.05 codebase, including its current Polish dictionary.
+
+Release r39 narrows the Polish hard-`si` exception to `singl-`, `singiel-`,
+`singel-` and `singapur-`, while preserving the existing `singular-` behavior.
+`sing`, `singing`, `singer` and related forms therefore use Polish soft `si`;
+`single`, `singiel` and their inflections keep the hard pronunciation.
+The existing overbroad `niezi-` exception is also narrowed for `nieziszcz-`
+forms so their `zi` remains soft. The only changed bundled files are
+`pl_dict` and the data-version marker, now r39. App/UI, speed modes, imports
+and native synthesis algorithms retain r38 behavior.
 
 Release r38 reuses an unchanged effective voice for ordinary consecutive requests,
 avoiding repeated voice/dictionary loading. Language/variant changes, data imports,
@@ -123,6 +134,12 @@ features and use the same engine data.
 
 Use JDK 17 and the Android SDK, NDK and CMake versions declared in
 `build.gradle`:
+
+Build output, Gradle project cache and CMake staging are centralized under
+`D:\work\espeak-1.44.05-source\mespeak` in `build`, `.gradle` and `.cxx`.
+Generated voice-data resources are included from the central build directory.
+The Windows wrapper configures the project-cache path automatically. Drive C:
+is used only if drive D: does not exist.
 
 ```text
 gradlew.bat assembleDebug
