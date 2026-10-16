@@ -1,13 +1,18 @@
-> Local build and assistant materials were moved to `D:\work\espeak-1.44.05-source\mespeak`. Paths beginning with `installfiles`, `Workspace`, `snapshots`, `trash` or `Forme` below refer to that central directory; source paths remain relative to this checkout. Use `C:\work` only if drive D: does not exist.
+> Current signed APKs are in this checkout's `installfiles`. Build/diagnostic files are in `D:\work\Workspace\mespeak`, internal audits in `D:\work\Forme\mespeak`, prior versions in `D:\work\Snapshots\mespeak`, and disposable generated files in `D:\work\Trash\mespeak`. Use the same layout under `C:\work` only if drive D: does not exist.
 
 # mespeak
 
 [Polska dokumentacja](README.pl.md)
 
 `mespeak` is a 64-bit Android Text-to-Speech engine based on eSpeak
-1.44.05-r40. It uses the Android service, settings and JNI integration model
+1.44.05-r41. It uses the Android service, settings and JNI integration model
 from eSpeak NG, while the native synthesizer and voice data come from the
 reborn eSpeak 1.44.05 codebase, including its current Polish dictionary.
+
+Release r41 renames the spoken Polish name of the ASCII hyphen-minus `-`
+from `myślnik` to `minus`. The six full round/square/curly bracket names
+were verified and retained. This update changes only the Polish dictionary,
+its data marker and release metadata; Android UI and speed behavior are unchanged.
 
 Release r40 corrects the Polish `ziśc-`, `ziść-` and `ziszcz-` families,
 including prefixed forms such as `nieziszczalny`, to hard `z` followed by `i`.
@@ -145,7 +150,7 @@ Use JDK 17 and the Android SDK, NDK and CMake versions declared in
 `build.gradle`:
 
 Build output, Gradle project cache and CMake staging are centralized under
-`D:\work\espeak-1.44.05-source\mespeak` in `build`, `.gradle` and `.cxx`.
+`D:\work\Workspace\mespeak` in `build`, `.gradle` and `.cxx`.
 Generated voice-data resources are included from the central build directory.
 The Windows wrapper configures the project-cache path automatically. Drive C:
 is used only if drive D: does not exist.
