@@ -5,9 +5,29 @@
 [Polska dokumentacja](README.pl.md)
 
 `mespeak` is a 64-bit Android Text-to-Speech engine based on eSpeak
-1.44.05-r41. It uses the Android service, settings and JNI integration model
+1.44.05-r42. It uses the Android service, settings and JNI integration model
 from eSpeak NG, while the native synthesizer and voice data come from the
 reborn eSpeak 1.44.05 codebase, including its current Polish dictionary.
+
+Release r42 uses Android's document picker to import dictionaries from Downloads
+and other document providers, with success/error feedback in Polish and English.
+Choose a normal `_dict` file or `pl.dict` (imported under its engine name `pl_dict`).
+Data refresh and import are staged, journalled and recovered before the engine
+uses them; failed publication keeps the previous data/imports for rollback.
+Turning off import preservation discards imports only after a successful refresh.
+Language availability, default voice selection and preview now agree when the
+system language is disabled and another language, such as Polish, is enabled.
+
+The bundled Polish dictionary corrects Monika-family stress, uses careful stress
+in `muzyka` and `minimum`, and uses the Polish affricate in numeric 30/40/200.
+20 and 300 are unchanged. The tracked [mydict](mydict/README.md) alternative uses
+the documented colloquial stress style and the older numeric pronunciation;
+both dictionaries contain the current unrelated pronunciation fixes. Import
+`mydict/pl.dict` to use that alternative. To restore this release's default,
+download `engine/espeak-data/pl_dict` from the same release tag and import it.
+Existing explicit imports continue to override bundled dictionaries when preserved.
+There is one APK and one native engine; no background service or synthesis-rate
+algorithm has been added by these maintenance changes.
 
 Release r41 renames the spoken Polish name of the ASCII hyphen-minus `-`
 from `myślnik` to `minus`. The six full round/square/curly bracket names
