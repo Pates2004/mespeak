@@ -5,9 +5,19 @@
 [Polska dokumentacja](README.pl.md)
 
 `mespeak` is a 64-bit Android Text-to-Speech engine based on eSpeak
-1.44.05-r42. It uses the Android service, settings and JNI integration model
+1.44.05-r43. It uses the Android service, settings and JNI integration model
 from eSpeak NG, while the native synthesizer and voice data come from the
 reborn eSpeak 1.44.05 codebase, including its current Polish dictionary.
+
+Release r43 preserves request cancellation through voice setup and native entry,
+stops further output after cancellation, and clears pending native resume/echo/voice
+state on the synthesis thread. Canceled requests do not report successful completion
+or a synthesis error. Failed initial engine wrappers can retry initialization and
+refresh their voice catalog without requiring a service restart. Dictionary imports
+retain their success/error result across activity recreation, including the result
+dialog, using the current interface language. Speed algorithms and dictionaries
+are unchanged; bundled data keep their r42 marker, so this app update does not
+re-extract them. No physical-device latency or battery improvement is claimed.
 
 Release r42 uses Android's document picker to import dictionaries from Downloads
 and other document providers, with success/error feedback in Polish and English.
