@@ -5,9 +5,14 @@
 [Polska dokumentacja](README.pl.md)
 
 `mespeak` is a 64-bit Android Text-to-Speech engine based on eSpeak
-1.44.05-r44. It uses the Android service, settings and JNI integration model
+1.44.05-r45. It uses the Android service, settings and JNI integration model
 from eSpeak NG, while the native synthesizer and voice data come from the
 reborn eSpeak 1.44.05 codebase, including its current Polish dictionary.
+
+Release r45 avoids repeating synthesis cleanup when eSpeak has already stopped
+the generator after a canceled audio callback. A request keeps its selected
+voice while changes to the language catalog take effect on subsequent requests.
+Bundled voice data stay at r44.
 
 Release r44 corrects Polish noun stress, including `sataniście`, without treating
 noun endings as past-tense verb endings. Genuine errors are corrected in both
